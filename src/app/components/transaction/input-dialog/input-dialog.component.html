@@ -1,0 +1,74 @@
+
+<mat-toolbar >
+    <span class="fill-remaining-space"></span>
+    <span>{{header}}</span>
+    <span class="fill-remaining-space"></span>
+    <button class ='but' mat-mini-fab color='warn'(click)="onCancel()"><mat-icon>clear</mat-icon></button>
+  
+  </mat-toolbar>
+  <br>
+<mat-dialog-content >
+
+    <form [formGroup]="TxnForm">
+
+        
+      
+            <mat-radio-group formControlName="TransactionType">
+                <mat-radio-button value="Income">Income</mat-radio-button>
+                <mat-radio-button value="Expense">Expense</mat-radio-button>
+                
+            </mat-radio-group>
+            <!-- <mat-error>This is reqired</mat-error> -->
+            <br>
+
+            <mat-form-field appearance="standard" >
+                <mat-label>Transaction Date</mat-label>
+                <input matInput [matDatepicker]="picker2" formControlName="TxnDate" >
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+                <mat-error>Please Valid Date</mat-error>
+                <!-- <mat-icon matSuffix>sentiment_very_satisfief</mat-icon> -->
+            <!-- <mat-hint>This field is mandatory</mat-hint> -->
+            </mat-form-field>
+            <br>
+
+            <mat-form-field apperance="fill">
+                <mat-label>Category </mat-label>
+                <mat-select  formControlName="Category">
+                <mat-option *ngFor ="let x of cList" value="{{x.categoryName}}">{{x.categoryName}}</mat-option>
+
+      
+               </mat-select> 
+               <mat-error>Category Is Compulsory</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill" >
+            <mat-label  color="warn">Amount</mat-label>
+            <input matInput type ="number" formControlName="Amount" >
+   
+            <mat-error >Please Enter Valid Amount</mat-error>
+         
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill" >
+            <mat-label  color="warn">Description</mat-label>
+            <textarea matInput rows="4"  formControlName="Description" >
+
+            </textarea>
+            <!-- <mat-hint>This Is Optional Field</mat-hint> -->
+        </mat-form-field>
+        <br>
+        <mat-radio-group formControlName="PaymentMode">
+            <mat-radio-button value="Cash">Cash</mat-radio-button>
+            <mat-radio-button value="Debit Card">Debit Card</mat-radio-button>
+            <mat-radio-button value="Credit Card">Credit Card</mat-radio-button>
+        </mat-radio-group>
+      
+    </form>
+
+</mat-dialog-content>
+<br>
+<mat-dialog-actions>
+    <button mat-raised-button [disabled]="TxnForm.invalid" (click)="saveTxn()" color="primary">{{action}}</button>
+    <button mat-raised-button (click)="onCancel()" color = "warn">Cancel</button>
+</mat-dialog-actions>

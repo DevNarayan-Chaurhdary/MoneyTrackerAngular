@@ -1,0 +1,22 @@
+
+<app-header (sidenavToggle)="sidenav.toggle()">
+       
+</app-header>
+ <mat-sidenav-container class="example-container">
+    <mat-sidenav class="example-sidenav" #sidenav mode="side" role="navigation">
+     <app-sidenav (sideNavClose)="sidenav.toggle()">
+
+     </app-sidenav>
+
+    </mat-sidenav>
+    <mat-sidenav-content>
+
+      
+      <main>
+        <router-outlet>
+
+        </router-outlet>
+ 
+      </main>
+    </mat-sidenav-content>
+  </mat-sidenav-container> 
